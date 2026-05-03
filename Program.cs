@@ -9,7 +9,6 @@ namespace Lab2
         {
             Console.Clear();
 
-            PrintMenu();
             Start();
         }
 
@@ -18,6 +17,7 @@ namespace Lab2
             bool isRunning = true;
             while (isRunning)
             {
+                PrintMenu();
                 int choice = GetValidInt("Your choice", 0, 2);
 
                 switch (choice)
@@ -58,33 +58,6 @@ namespace Lab2
 
 
 
-        static string ConvertDirectToTwosComplement(string binary)
-        {
-            char[] chars = new char[binary.Length];
-            chars[0] = binary[0];
-
-            bool oneIsFound = false;
-            for (int i = binary.Length - 1; i > 0; i--)
-            {
-                if (oneIsFound)
-                {
-                    if (binary[i] == '1')
-                        chars[i] = '0';
-                    else
-                        chars[i] = '1';
-                }
-                else
-                {
-                    chars[i] = binary[i];
-
-                    if (binary[i] == '1')
-                        oneIsFound = true;
-                }
-            }
-
-            return new string(chars);
-        }
-        
         static int ConvertBinaryToInt(string binary)
         {
             int result = 0;
@@ -116,6 +89,34 @@ namespace Lab2
 
             return result;
         }
+
+        static string ConvertDirectToTwosComplement(string binary)
+        {
+            char[] chars = new char[binary.Length];
+            chars[0] = binary[0];
+
+            bool oneIsFound = false;
+            for (int i = binary.Length - 1; i > 0; i--)
+            {
+                if (oneIsFound)
+                {
+                    if (binary[i] == '1')
+                        chars[i] = '0';
+                    else
+                        chars[i] = '1';
+                }
+                else
+                {
+                    chars[i] = binary[i];
+
+                    if (binary[i] == '1')
+                        oneIsFound = true;
+                }
+            }
+
+            return new string(chars);
+        }
+        
 
 
 
@@ -183,6 +184,8 @@ namespace Lab2
                 return input;
             }
         }
+
+        
 
         // Check if a string contains only valid base-2 characters
         static bool IsBinaryValid(string bin)
