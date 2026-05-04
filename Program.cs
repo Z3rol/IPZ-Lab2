@@ -37,7 +37,7 @@ namespace Lab2
                     break;
 
                     case 2:
-                        string binary = GetValid8BitBinary("Enter a binary of 8 characters (the first must represent sign)");
+                        string binary = GetValid8BitBinary("Enter a binary of 8 characters (the first char must represent sign)");
                         string directBinary = ConvertDirectToTwosComplement(binary);
                         Console.WriteLine(directBinary);
                     break;
@@ -51,8 +51,8 @@ namespace Lab2
 
         static void PrintMenu()
         {
-            Console.WriteLine(" Task 1. Convert entered decimal binary to number");
-            Console.WriteLine(" Task 2. Convert binary code to two's component");
+            Console.WriteLine(" Task 1. Convert decimal binary to number");
+            Console.WriteLine(" Task 2. Convert binary to two's complement");
             Console.WriteLine(" 0. Close the program");
         }
 
@@ -92,6 +92,12 @@ namespace Lab2
 
         static string ConvertDirectToTwosComplement(string binary)
         {
+            if (binary[0] == '0')
+            {
+                Console.WriteLine("No changes were made");
+                return "";
+            }
+            
             char[] chars = new char[binary.Length];
             chars[0] = binary[0];
 
@@ -185,7 +191,7 @@ namespace Lab2
             }
         }
 
-        
+
 
         // Check if a string contains only valid base-2 characters
         static bool IsBinaryValid(string bin)
